@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Blog | Lavanya R</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Special Elite', 'Courier New', monospace;
+    line-height: 1.8;
+    color: #f2e9e4;
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(10,0,5,.2), rgba(10,0,5,.55)),
+      url('stranger-bg.jpg') center top / cover no-repeat fixed,
+      radial-gradient(ellipse at top, #2b0008 0%, #0a0005 55%, #000 100%);
+    padding: 24px 16px 56px;
+    overflow-x: hidden;
+  }
+  /* floating Upside Down spores */
+  .spore {
+    position: fixed; bottom: -10px; width: 6px; height: 6px; border-radius: 50%;
+    background: #ff2a3d; opacity: 0.6; box-shadow: 0 0 8px #ff2a3d;
+    animation: float 12s linear infinite; pointer-events: none;
+  }
+  @keyframes float { to { transform: translateY(-110vh) translateX(30px); opacity: 0; } }
+  .wrap { position: relative; max-width: 760px; margin: 0 auto; }
+
+  /* Christmas lights */
+  .lights { display: flex; justify-content: space-around; margin-bottom: 18px; }
+  .lights span { width: 14px; height: 20px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: blink 2.4s infinite; }
+  .lights span:nth-child(4n+1) { background: #ff2a3d; box-shadow: 0 0 12px #ff2a3d; }
+  .lights span:nth-child(4n+2) { background: #ffd23f; box-shadow: 0 0 12px #ffd23f; animation-delay: .6s; }
+  .lights span:nth-child(4n+3) { background: #3ddc97; box-shadow: 0 0 12px #3ddc97; animation-delay: 1.2s; }
+  .lights span:nth-child(4n+4) { background: #3fa7ff; box-shadow: 0 0 12px #3fa7ff; animation-delay: 1.8s; }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+
+
+  /* hanging stickers */
+  .hangers { display: flex; justify-content: space-around; align-items: flex-start; margin: -6px 0 18px; }
+  .hang { display: flex; flex-direction: column; align-items: center; transform-origin: top center; animation: swing 3.4s ease-in-out infinite; }
+  .hang:nth-child(even) { animation-duration: 4.2s; animation-delay: -1.5s; }
+  .hang:nth-child(3n) { animation-delay: -2.6s; }
+  .hang i { display: block; width: 2px; background: #cfcfcf; }
+  .hang:nth-child(1) i { height: 30px; } .hang:nth-child(2) i { height: 62px; }
+  .hang:nth-child(3) i { height: 22px; } .hang:nth-child(4) i { height: 52px; }
+  .hang:nth-child(5) i { height: 34px; }
+  .hang b {
+    display: flex; align-items: center; justify-content: center;
+    width: 54px; height: 54px; font-size: 1.7rem; border-radius: 50%;
+    background: #fff; border: 3px solid #ff2a3d;
+    box-shadow: 0 0 14px rgba(255,42,61,.8);
+  }
+  @keyframes swing { 0%,100% { transform: rotate(7deg); } 50% { transform: rotate(-7deg); } }
+
+  .back {
+    display: inline-block; padding: 10px 22px; margin-bottom: 26px;
+    color: #fff; text-decoration: none; border: 2px solid #ff2a3d; border-radius: 6px;
+    box-shadow: 0 0 12px #ff2a3d, inset 0 0 8px rgba(255,42,61,.5);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .back:hover, .back:focus-visible { transform: scale(1.06); box-shadow: 0 0 24px #ff2a3d, inset 0 0 12px rgba(255,42,61,.8); }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif; font-weight: 900;
+    font-size: 2.6rem; line-height: 1.2; text-align: center; letter-spacing: 2px;
+    color: #ff2a3d;
+    text-shadow: 0 0 6px #ff2a3d, 0 0 22px #b3001b, 0 0 40px #7a0012;
+    animation: flicker 5s infinite;
+  }
+  @keyframes flicker {
+    0%,18%,22%,60%,64%,100% { opacity: 1; }
+    20%,62% { opacity: .45; }
+  }
+  .by { text-align: center; color: #ff9aa5; margin: 10px 0 30px; }
+
+  .card {
+    background: rgba(20, 0, 6, 0.75);
+    border: 1px solid #ff2a3d; border-radius: 8px;
+    padding: 22px 24px; margin-bottom: 22px;
+    box-shadow: 0 0 14px rgba(255,42,61,.35);
+  }
+  h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; color: #ff2a3d; margin-bottom: 8px; text-shadow: 0 0 8px rgba(255,42,61,.7); }
+  pre {
+    background: #000; color: #3ddc97; padding: 14px 16px; margin: 12px 0;
+    border-left: 4px solid #ff2a3d; border-radius: 4px; overflow-x: auto;
+  }
+  .quote {
+    text-align: center; margin-top: 30px; font-size: 1.15rem; color: #ffd23f;
+    text-shadow: 0 0 10px rgba(255,210,63,.6);
+  }
+  footer { text-align: center; margin-top: 34px; color: #ff9aa5; font-size: .9rem; }
+  @media (max-width: 480px) { h1 { font-size: 1.9rem; } }
+  @media (prefers-reduced-motion: reduce) { .hang, .spore, .lights span, h1 { animation: none; } }
+</style>
+</head>
+<body>
+<script>
+  for (let i = 0; i < 14; i++) {
+    const s = document.createElement('div');
+    s.className = 'spore';
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.animationDelay = (Math.random() * 12) + 's';
+    s.style.animationDuration = (9 + Math.random() * 8) + 's';
+    document.body.appendChild(s);
+  }
+</script>
+<div class="wrap">
+
+  <div class="lights"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="hangers" aria-hidden="true">
+    <div class="hang"><i></i><b>🚲</b></div>
+    <div class="hang"><i></i><b>🔦</b></div>
+    <div class="hang"><i></i><b>🧇</b></div>
+    <div class="hang"><i></i><b>📻</b></div>
+    <div class="hang"><i></i><b>🎄</b></div>
+  </div>
+
+  <a class="back" href="index.html">🏠 Back to Portfolio</a>
+
+  <h1>My First Steps in Python</h1>
+  <p class="by">By Lavanya R, 1st-year B.E. CSE, SRM Valliammai Engineering College</p>
+
+  <div class="card">
+    <h2>🔦 Why I started</h2>
+    <p>I joined B.E. Computer Science and Engineering with one big dream: to become a software developer. Every developer starts somewhere, so I chose Python as my first programming language.</p>
+  </div>
+
+  <div class="card">
+    <h2>💻 My very first program</h2>
+    <p>Everyone's first program is the same. It prints a message on the screen:</p>
+    <pre>print("Hello, World!")</pre>
+    <p>One line of code, and the computer talked back to me. That small moment made me love coding.</p>
+  </div>
+
+  <div class="card">
+    <h2>📚 What I am learning</h2>
+    <p>I am still at the beginning. I am learning the basics step by step: how to print output, how to store values in variables, and how to write simple programs. I am not an expert yet, and that is okay.</p>
+  </div>
+
+  <div class="card">
+    <h2>🚪 What is next</h2>
+    <p>I want to practise every day, build my first small project, and share it here on my portfolio. I will keep writing about my journey as I learn.</p>
+  </div>
+
+  <p class="quote">Every expert was once a beginner in the dark. 🔦</p>
+
+  <footer>© 2026 Lavanya R. Thanks for reading!</footer>
+
+</div>
+</body>
+</html>
